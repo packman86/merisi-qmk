@@ -13,8 +13,8 @@ Ready-to-flash files are on the [Releases page](../../releases/latest). Pick one
 
 | File | Use it with |
 | --- | --- |
-| `merisi_sessanta_vial.bin` | **Vial** (recommended for most people): remap keys in the Vial app, no extra files needed |
-| `merisi_sessanta_via.bin` + `merisi_sessanta_via.json` | **VIA**: remap keys in the VIA web app |
+| `merisi_sessanta_via.bin` + `merisi_sessanta_via.json` | **VIA** (recommended): remap keys in the VIA web app |
+| `merisi_sessanta_vial.bin` | **Vial**: remap keys in the Vial app, no extra file needed |
 | `merisi_sessanta_default.bin` | plain QMK, fixed keymap |
 
 Flashing any of them resets the stored keymap to the default layout.
@@ -23,12 +23,16 @@ Flashing any of them resets the stored keymap to the default layout.
 
 1. **Enter the bootloader.** Either press the **RESET** button on the PCB, or hold **Esc** while plugging
    in the cable. The keyboard stops typing and the computer sees a device called "STM32 BOOTLOADER".
+
+   > **Warning:** holding Esc while plugging in also **erases your saved keymap and settings**, even if
+   > you then don't flash anything. Back up your layout first (VIA: Save + Load; Vial: File, Save current
+   > layout), or use the RESET button, which keeps them until you flash.
 2. **Flash the `.bin`**, with one of:
    * [QMK Toolbox](https://github.com/qmk/qmk_toolbox/releases) (macOS / Windows): open the `.bin`, click
      **Flash**.
    * `dfu-util` (any OS):
 
-         dfu-util -a 0 -d 0483:df11 -s 0x08000000:leave -D merisi_sessanta_vial.bin
+         dfu-util -a 0 -d 0483:df11 -s 0x08000000:leave -D merisi_sessanta_via.bin
 
 3. The keyboard restarts by itself. If it doesn't, unplug it and plug it back in.
 
