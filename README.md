@@ -22,6 +22,10 @@ When you flash a file, the keyboard erases its keymap. The keyboard then uses th
 
 ## Flash the Merisi Sessanta
 
+The animation shows the procedure in QMK Toolbox on macOS.
+
+![Flash merisi_sessanta_via.bin with QMK Toolbox: open the file, push RESET, then click Flash](docs/media/flash-firmware.gif)
+
 1. Put the keyboard in bootloader mode. Push the **RESET** button on the PCB, or hold **Esc** when you connect the cable.
    The keyboard stops the input of characters. The computer then shows a device with the name "STM32 BOOTLOADER".
 
@@ -45,10 +49,13 @@ If the keyboard does not operate after a flash, push RESET. Then flash the file 
 
 The Sessanta is not in the VIA list of keyboards. Load the definition file one time:
 
+![Add the Sessanta to VIA: turn on the Design tab, load merisi_sessanta_via.json, then authorize the keyboard](docs/media/via-setup.gif)
+
 1. Open [usevia.app](https://usevia.app) in Chrome or Edge.
 2. In **Settings**, set "Show Design tab" to on.
-3. In **Design**, load `merisi_sessanta_via.json`.
-4. In **Configure**, connect the keyboard. Then change the keymap.
+3. In **Design**, click **Confirm**. Then load `merisi_sessanta_via.json`.
+4. In **Configure**, click **Authorize device**. Select **Sessanta**, then click **Connect**.
+   VIA shows "MERISI SESSANTA" at the top right. You can then change the keymap.
 
 The **Layouts** tab has the alternatives for split Backspace and split right Shift.
 
