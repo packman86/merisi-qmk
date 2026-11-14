@@ -39,3 +39,10 @@ Enter the bootloader in 3 ways:
 
 The computer then shows the board as "STM32 BOOTLOADER" (`0483:df11`). The STM32 bootloader is in ROM.
 Thus the RESET button operates with all firmware on the chip.
+
+## Tutorials
+
+The [Merisi QMK README](https://github.com/packman86/merisi-qmk#flash-the-merisi-sessanta) has two animations:
+
+* [Flash the firmware with QMK Toolbox](https://github.com/packman86/merisi-qmk#flash-the-merisi-sessanta)
+* [Add the Sessanta to VIA](https://github.com/packman86/merisi-qmk#use-via)
