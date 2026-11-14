@@ -1,7 +1,7 @@
 # Merisi QMK firmware
 
-Open-source firmware for Merisi keyboards, built on [QMK](https://qmk.fm). Use it as it is with
-[VIA](https://usevia.app) or [Vial](https://get.vial.today), or as a starting point for your own QMK keymap.
+This repository has the firmware for Merisi keyboards. The firmware uses [QMK](https://qmk.fm). You can use it
+with [VIA](https://usevia.app) or [Vial](https://get.vial.today), or you can use it as the base for your own QMK keymap.
 
 | Keyboard | Folder | Status |
 | --- | --- | --- |
@@ -9,84 +9,84 @@ Open-source firmware for Merisi keyboards, built on [QMK](https://qmk.fm). Use i
 
 ## Download
 
-Ready-to-flash files are on the [Releases page](../../releases/latest). Pick one:
+The files to flash are on the [Releases page](../../releases/latest). Select one of these options:
 
-| File | Use it with |
+| File | Use |
 | --- | --- |
-| `merisi_sessanta_via.bin` + `merisi_sessanta_via.json` | **VIA** (recommended): remap keys in the VIA web app |
-| `merisi_sessanta_vial.bin` | **Vial**: remap keys in the Vial app, no extra file needed |
-| `merisi_sessanta_default.bin` | plain QMK, fixed keymap |
+| `merisi_sessanta_via.bin` and `merisi_sessanta_via.json` | **VIA (recommended).** Change the keymap in the VIA web app. |
+| `merisi_sessanta_vial.bin` | **Vial.** Change the keymap in the Vial app. You do not need an extra file. |
+| `merisi_sessanta_default.bin` | Plain QMK with a fixed keymap. |
 
-Flashing any of them resets the stored keymap to the default layout.
+When you flash a file, the keyboard erases its saved keymap and uses the default layout.
 
-## Flashing the Merisi Sessanta
+## Flash the Merisi Sessanta
 
-1. **Enter the bootloader.** Either press the **RESET** button on the PCB, or hold **Esc** while plugging
-   in the cable. The keyboard stops typing and the computer sees a device called "STM32 BOOTLOADER".
+1. Put the keyboard in bootloader mode. Push the **RESET** button on the PCB, or hold **Esc** while you connect the cable.
+   The keyboard stops typing. The computer then shows a device with the name "STM32 BOOTLOADER".
 
-   > **Warning:** holding Esc while plugging in also **erases your saved keymap and settings**, even if
-   > you then don't flash anything. Back up your layout first (VIA: Save + Load; Vial: File, Save current
-   > layout), or use the RESET button, which keeps them until you flash.
-2. **Flash the `.bin`**, with one of:
-   * [QMK Toolbox](https://github.com/qmk/qmk_toolbox/releases) (macOS / Windows): open the `.bin`, click
-     **Flash**.
-   * `dfu-util` (any OS):
+   > **Warning:** When you hold Esc while you connect the cable, the keyboard erases its saved keymap and settings.
+   > This occurs even if you do not flash a file. Before you use Esc, save your layout. In VIA, use the "Save + Load" tab.
+   > In Vial, select File, then "Save current layout". The RESET button does not erase the settings.
+
+2. Flash the `.bin` file with one of these tools:
+   * [QMK Toolbox](https://github.com/qmk/qmk_toolbox/releases) (macOS and Windows). Open the `.bin` file, then click **Flash**.
+   * `dfu-util` (all operating systems):
 
          dfu-util -a 0 -d 0483:df11 -s 0x08000000:leave -D merisi_sessanta_via.bin
 
-3. The keyboard restarts by itself. If it doesn't, unplug it and plug it back in.
+3. The keyboard starts again automatically. If it does not start, disconnect the cable and connect it again.
 
-The bootloader is built into the chip, so the RESET button always works, even if a flash goes wrong:
-just flash again.
+The bootloader is in the chip. Thus the RESET button always operates, also after a flash that failed.
+If a flash fails, push RESET and flash again.
 
-## Using VIA
+## Use VIA
 
-VIA doesn't know the Sessanta yet, so load its definition once:
+VIA does not have the Sessanta in its list. Load the definition file one time:
 
 1. Open [usevia.app](https://usevia.app) in Chrome or Edge.
-2. **Settings**: turn on **Show Design tab**.
-3. **Design**: load `merisi_sessanta_via.json`.
-4. **Configure**: connect the keyboard and remap. The **Layouts** tab has the split Backspace and split
-   right Shift options.
+2. In **Settings**, turn on "Show Design tab".
+3. In **Design**, load `merisi_sessanta_via.json`.
+4. In **Configure**, connect the keyboard and change the keymap.
 
-VIA's "Test Matrix" stays blank: QMK keeps raw switch states private unless the firmware is built
-insecure. Use VIA's normal key tester, or Vial's matrix tester.
+The **Layouts** tab has the options for split Backspace and split right Shift.
 
-## Using Vial
+The "Test Matrix" function in VIA shows no keys. QMK does not send the switch states to VIA, because other
+programs could read the keystrokes. To test the keys, use the key tester in VIA or the matrix tester in Vial.
 
-Open [Vial](https://get.vial.today) (desktop app or web). The layout is built into the firmware, so there
-is nothing to load. To use the matrix tester or other locked features, unlock by holding **Esc + Enter**
-when Vial asks.
+## Use Vial
+
+Open [Vial](https://get.vial.today) (desktop app or web). The layout is in the firmware, so you do not load a file.
+Some functions are locked, for example the matrix tester. To unlock them, hold **Esc** and **Enter** when Vial tells you.
 
 ## Merisi Sessanta
 
-* 60% PCB, STM32F072RBT6, USB-C daughterboard on a 4-pin JST cable, RESET button.
-* Layouts: split Backspace and split right Shift (the 1u right half is Fn); bottom row
-  1.5u / 1u / 1.5u / 7u / 1.5u / 1u / 1.5u. QMK layout names: `LAYOUT_60_ansi_tsangan_split_bs_rshift`,
-  `LAYOUT_60_ansi_tsangan`.
-* USB id `4D57:5336`, shown as "Sessanta" by "Merisi".
-* Default keymap: standard ANSI. Fn (`MO(1)`) is on the right of the split right Shift; layers 1-3 are
-  empty for you to fill.
+* 60% PCB with an STM32F072RBT6 microcontroller and a RESET button.
+* A 4-pin JST cable connects the PCB to a USB-C daughterboard.
+* Layout options: split Backspace and split right Shift. The 1u key at the right of the split right Shift is Fn.
+* Bottom row: 1.5u, 1u, 1.5u, 7u, 1.5u, 1u, 1.5u.
+* QMK layout names: `LAYOUT_60_ansi_tsangan_split_bs_rshift` and `LAYOUT_60_ansi_tsangan`.
+* USB ID `4D57:5336`. The computer shows the keyboard as "Sessanta" by "Merisi".
+* The default keymap is standard ANSI. Fn (`MO(1)`) selects layer 1. Layers 1 to 3 are empty, so you can add your own keys.
 
-## Building from source
+## Build from source
 
-**Plain QMK or VIA** (upstream [QMK](https://github.com/qmk/qmk_firmware), tested with 0.34.8):
+To build plain QMK or VIA firmware, use upstream [QMK](https://github.com/qmk/qmk_firmware). We tested version 0.34.8.
 
     cp -R keyboards/merisi/sessanta <qmk_firmware>/keyboards/merisi/
     qmk compile -kb merisi/sessanta -km default     # or -km via, or your own keymap
 
-**Vial** ([Vial-QMK](https://github.com/vial-kb/vial-qmk), tested at `dd43959`):
+To build Vial firmware, use [Vial-QMK](https://github.com/vial-kb/vial-qmk). We tested commit `dd43959`.
 
     cp -R keyboards/merisi/sessanta <vial-qmk>/keyboards/merisi/
     make merisi/sessanta:vial
 
-The release Vial build also applies [`patches/vial-nkro-default.patch`](patches/vial-nkro-default.patch)
-to Vial-QMK, so that "Reset settings" in Vial keeps N-key rollover on (the keyboard's default). Without
-it the firmware works the same, except that a settings reset turns N-key rollover off.
+The Vial release also uses [`patches/vial-nkro-default.patch`](patches/vial-nkro-default.patch) on Vial-QMK.
+With this patch, "Reset settings" in Vial keeps N-key rollover on, which is the default for this keyboard.
+Without the patch, the firmware operates the same, but a settings reset sets N-key rollover to off.
 
-Toolchain used for the releases: `arm-none-eabi-gcc` 8.5.0.
+We built the releases with `arm-none-eabi-gcc` 8.5.0.
 
 ## License
 
-GPL-2.0-or-later, the same as QMK. See [LICENSE](LICENSE). You may use, change and share this firmware;
-if you distribute a modified build, share its source too.
+This firmware has the GPL-2.0-or-later license, the same as QMK. Refer to [LICENSE](LICENSE).
+You can use, change, and share this firmware. If you share a changed build, you must also share its source code.
