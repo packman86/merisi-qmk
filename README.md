@@ -20,11 +20,18 @@ The firmware files are on the [Releases page](../../releases/latest). Select one
 
 When you flash a file, the keyboard erases its keymap. The keyboard then uses the default layout.
 
+Two animations show the procedure for the VIA file:
+
+1. [Flash the firmware](#flash-the-merisi-sessanta) with QMK Toolbox.
+2. [Add the Sessanta to VIA](#use-via).
+
 ## Flash the Merisi Sessanta
 
 The animation shows the procedure in QMK Toolbox on macOS.
 
 ![Flash merisi_sessanta_via.bin with QMK Toolbox: open the file, push RESET, then click Flash](docs/media/flash-firmware.gif)
+
+Full-size video: [flash-firmware.mp4](docs/media/flash-firmware.mp4)
 
 1. Put the keyboard in bootloader mode. Push the **RESET** button on the PCB, or hold **Esc** when you connect the cable.
    The keyboard stops the input of characters. The computer then shows a device with the name "STM32 BOOTLOADER".
@@ -50,6 +57,8 @@ If the keyboard does not operate after a flash, push RESET. Then flash the file 
 The Sessanta is not in the VIA list of keyboards. Load the definition file one time:
 
 ![Add the Sessanta to VIA: turn on the Design tab, load merisi_sessanta_via.json, then authorize the keyboard](docs/media/via-setup.gif)
+
+Full-size video: [via-setup.mp4](docs/media/via-setup.mp4)
 
 1. Open [usevia.app](https://usevia.app) in Chrome or Edge.
 2. In **Settings**, set "Show Design tab" to on.
